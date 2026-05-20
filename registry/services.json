@@ -1,0 +1,190 @@
+{
+  "version": "0.1",
+  "updated_at": "2026-05-20",
+  "categories": [
+    { "id": "text", "name": "Text generation", "icon": "FileText" },
+    { "id": "image", "name": "Image generation", "icon": "Image" },
+    { "id": "data", "name": "Market data", "icon": "BarChart3" },
+    { "id": "search", "name": "Search", "icon": "Search" },
+    { "id": "translation", "name": "Translation", "icon": "Languages" },
+    { "id": "ocr", "name": "OCR", "icon": "ScanText" },
+    { "id": "other", "name": "Other", "icon": "Sparkles" }
+  ],
+  "services": [
+    {
+      "id": "atlas-summarizer",
+      "name": "Atlas Summarizer",
+      "description": "Summarize any text up to 5,000 characters into 3 crisp bullet points. Powered by Atlas Research's fine-tuned model.",
+      "category": "text",
+      "endpoint": "https://api.example.com/v1/summarize",
+      "method": "POST",
+      "price_raw": "10000",
+      "price_decimals": 6,
+      "price_token": "0x7aB6f3ed87C42eF0aDb67Ed95090f8bF5240149e",
+      "price_symbol": "USDC.e",
+      "network": "mainnet",
+      "provider_address": "0xc82C2ADE9BbacF01C2168756Ce66E88F69676967",
+      "provider_name": "Atlas Research",
+      "provider_agentid": "https://agentid-seven.vercel.app/0xc82C2ADE9BbacF01C2168756Ce66E88F69676967",
+      "input_schema": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "description": "Text to summarize (≤ 5000 chars)", "maxLength": 5000 }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "summary": { "type": "string" },
+          "bullets": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "example_input": { "text": "The quick brown fox jumps over the lazy dog." },
+      "tags": ["AI", "text", "summarization", "LLM"],
+      "submitted_at": "2026-05-15",
+      "verified": true
+    },
+    {
+      "id": "compass-translate",
+      "name": "Compass Translate",
+      "description": "Translate text across 40+ languages with context-aware output. Optimized for short messages.",
+      "category": "translation",
+      "endpoint": "https://api.example.com/v1/translate",
+      "method": "POST",
+      "price_raw": "5000",
+      "price_decimals": 6,
+      "price_token": "0x7aB6f3ed87C42eF0aDb67Ed95090f8bF5240149e",
+      "price_symbol": "USDC.e",
+      "network": "mainnet",
+      "provider_address": "0x4f4F9E2dEA1f0F69C5b1c4d3eF0F6cF0F69C1E2A",
+      "provider_name": "Compass Labs",
+      "provider_agentid": "https://agentid-seven.vercel.app/0x4f4F9E2dEA1f0F69C5b1c4d3eF0F6cF0F69C1E2A",
+      "input_schema": {
+        "type": "object",
+        "required": ["text", "target_language"],
+        "properties": {
+          "text": { "type": "string", "maxLength": 1000 },
+          "source_language": { "type": "string", "description": "ISO code, e.g. 'en'. Auto-detected if omitted." },
+          "target_language": { "type": "string", "description": "ISO code, e.g. 'ja'" }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "translated": { "type": "string" },
+          "detected_source": { "type": "string" }
+        }
+      },
+      "example_input": { "text": "Hello world", "target_language": "ja" },
+      "tags": ["translation", "i18n", "language"],
+      "submitted_at": "2026-05-12",
+      "verified": true
+    },
+    {
+      "id": "spotlight-image-gen",
+      "name": "Spotlight Image",
+      "description": "Generate a 1024×1024 image from a text prompt. SDXL-grade quality, ~6 seconds per call.",
+      "category": "image",
+      "endpoint": "https://api.example.com/v1/image",
+      "method": "POST",
+      "price_raw": "200000",
+      "price_decimals": 6,
+      "price_token": "0x7aB6f3ed87C42eF0aDb67Ed95090f8bF5240149e",
+      "price_symbol": "USDC.e",
+      "network": "mainnet",
+      "provider_address": "0x2eF1cA9aB3cD5eF1cA9aB3cD5eF1cA9aB3cD5eF1",
+      "provider_name": "Spotlight Studio",
+      "provider_agentid": "https://agentid-seven.vercel.app/0x2eF1cA9aB3cD5eF1cA9aB3cD5eF1cA9aB3cD5eF1",
+      "input_schema": {
+        "type": "object",
+        "required": ["prompt"],
+        "properties": {
+          "prompt": { "type": "string", "maxLength": 500 },
+          "style": { "type": "string", "enum": ["photo", "illustration", "3d", "anime"], "default": "photo" }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "seed": { "type": "integer" }
+        }
+      },
+      "example_input": { "prompt": "warm sand dunes at golden hour", "style": "photo" },
+      "tags": ["image", "generation", "art", "SDXL"],
+      "submitted_at": "2026-05-08",
+      "verified": false
+    },
+    {
+      "id": "threadly-price",
+      "name": "Threadly Crypto Prices",
+      "description": "Real-time price feed for 200+ tokens (CEX + DEX aggregated). 50ms latency.",
+      "category": "data",
+      "endpoint": "https://api.example.com/v1/price",
+      "method": "GET",
+      "price_raw": "1000",
+      "price_decimals": 6,
+      "price_token": "0x7aB6f3ed87C42eF0aDb67Ed95090f8bF5240149e",
+      "price_symbol": "USDC.e",
+      "network": "mainnet",
+      "provider_address": "0x9aC8b1cD5eF1cA9aB3cD5eF1cA9aB3cD5eF19aC8",
+      "provider_name": "Threadly Data",
+      "provider_agentid": "https://agentid-seven.vercel.app/0x9aC8b1cD5eF1cA9aB3cD5eF1cA9aB3cD5eF19aC8",
+      "input_schema": {
+        "type": "object",
+        "required": ["symbol"],
+        "properties": {
+          "symbol": { "type": "string", "description": "Token ticker, e.g. 'ETH'" }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "symbol": { "type": "string" },
+          "price_usd": { "type": "number" },
+          "ts": { "type": "string" }
+        }
+      },
+      "example_input": { "symbol": "ETH" },
+      "tags": ["prices", "data", "crypto", "feed"],
+      "submitted_at": "2026-05-18",
+      "verified": true
+    },
+    {
+      "id": "atlas-ocr",
+      "name": "Atlas OCR",
+      "description": "Extract text from images and PDFs. Multilingual, supports handwriting.",
+      "category": "ocr",
+      "endpoint": "https://api.example.com/v1/ocr",
+      "method": "POST",
+      "price_raw": "20000",
+      "price_decimals": 6,
+      "price_token": "0x7aB6f3ed87C42eF0aDb67Ed95090f8bF5240149e",
+      "price_symbol": "USDC.e",
+      "network": "mainnet",
+      "provider_address": "0xc82C2ADE9BbacF01C2168756Ce66E88F69676967",
+      "provider_name": "Atlas Research",
+      "provider_agentid": "https://agentid-seven.vercel.app/0xc82C2ADE9BbacF01C2168756Ce66E88F69676967",
+      "input_schema": {
+        "type": "object",
+        "required": ["image_url"],
+        "properties": {
+          "image_url": { "type": "string", "format": "uri" },
+          "language": { "type": "string", "default": "auto" }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "confidence": { "type": "number" }
+        }
+      },
+      "example_input": { "image_url": "https://example.com/sample.png" },
+      "tags": ["ocr", "vision", "documents"],
+      "submitted_at": "2026-05-10",
+      "verified": false
+    }
+  ]
+}
