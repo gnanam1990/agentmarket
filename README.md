@@ -4,6 +4,15 @@ Discovery directory of paid AI services on the [Kite](https://gokite.ai) blockch
 
 Each listing has a price, an endpoint, an input schema, and a "Try it" button. Click → connect wallet → sign payment → service is called with `Authorization: Bearer <tx_hash>`. Stateless directory; the registry is just a JSON file in `registry/services.json`.
 
+## Live deployment
+
+- Web app: <https://agentmarket-self.vercel.app>
+- Host: Vercel (`agentmarket`)
+- Build: `cd web && npm run build`
+- Output: `web/dist`
+
+The Vercel project deploys from the repository root so the build can include both `web/` and `registry/services.json`. The root `vercel.json` captures that setup.
+
 ## How it works
 
 - `registry/services.json` is the source of truth.
