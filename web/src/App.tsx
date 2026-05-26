@@ -13,7 +13,8 @@ import { ServiceGrid } from "./components/service-grid";
 import { CategoryTabs } from "./components/category-tabs";
 import { ServiceDetail } from "./components/service-detail";
 
-const WALLETCONNECT_PROJECT_ID = "00000000000000000000000000000000";
+const WALLETCONNECT_PROJECT_ID =
+  import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || "YOUR_PROJECT_ID";
 
 const wagmiConfig = getDefaultConfig({
   appName: "AgentMarket",
